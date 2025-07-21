@@ -72,7 +72,6 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedImpact, setSelectedImpact] = useState("all");
   const [selectedTimeframe, setSelectedTimeframe] = useState("all");
-  const [selectedIndustry, setSelectedIndustry] = useState("all");
 
   const handleInterestToggle = (interest: string) => {
     setSelectedInterests(prev => 
@@ -219,8 +218,6 @@ const Index = () => {
           onImpactChange={setSelectedImpact}
           selectedTimeframe={selectedTimeframe}
           onTimeframeChange={setSelectedTimeframe}
-          selectedIndustry={selectedIndustry}
-          onIndustryChange={setSelectedIndustry}
           // 🔄 MIGRATION TODO: These filters should trigger API calls to filter stories
         />
 

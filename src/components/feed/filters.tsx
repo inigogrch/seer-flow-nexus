@@ -12,8 +12,6 @@ interface FiltersProps {
   onImpactChange: (value: string) => void;
   selectedTimeframe: string;
   onTimeframeChange: (value: string) => void;
-  selectedIndustry: string;
-  onIndustryChange: (value: string) => void;
 }
 
 export function Filters({
@@ -24,9 +22,7 @@ export function Filters({
   selectedImpact,
   onImpactChange,
   selectedTimeframe,
-  onTimeframeChange,
-  selectedIndustry,
-  onIndustryChange
+  onTimeframeChange
 }: FiltersProps) {
   return (
     <div className="space-y-4">
@@ -84,23 +80,6 @@ export function Filters({
             <SelectItem value="today">Today</SelectItem>
             <SelectItem value="week">This Week</SelectItem>
             <SelectItem value="month">This Month</SelectItem>
-          </SelectContent>
-        </Select>
-
-        <Select value={selectedIndustry} onValueChange={onIndustryChange}>
-          <SelectTrigger className="w-[130px] bg-background/50 backdrop-blur-sm">
-            <SelectValue placeholder="Industry" />
-          </SelectTrigger>
-          <SelectContent className="bg-background z-50">
-            <SelectItem value="all">All Industries</SelectItem>
-            <SelectItem value="healthcare">Healthcare</SelectItem>
-            <SelectItem value="finance">Finance</SelectItem>
-            <SelectItem value="technology">Technology</SelectItem>
-            <SelectItem value="manufacturing">Manufacturing</SelectItem>
-            <SelectItem value="retail">Retail</SelectItem>
-            <SelectItem value="automotive">Automotive</SelectItem>
-            <SelectItem value="energy">Energy</SelectItem>
-            <SelectItem value="education">Education</SelectItem>
           </SelectContent>
         </Select>
 
