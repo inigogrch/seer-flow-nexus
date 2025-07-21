@@ -43,7 +43,7 @@ export function TechInterests({
         </p>
       </div>
 
-      <Card className="max-w-4xl mx-auto bg-gradient-chrome border-2">
+      <Card className="max-w-4xl mx-auto bg-card/80 backdrop-blur-sm border-2 shadow-soft">
         <CardContent className="p-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {techInterests.map((interest) => (

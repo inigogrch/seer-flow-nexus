@@ -22,7 +22,7 @@ export function FeedHeader({
     <div className="space-y-4">
       {/* Profile Summary */}
       {userProfile && (
-        <div className="bg-gradient-glass border border-border rounded-lg p-4">
+        <div className="bg-card/80 backdrop-blur-sm border border-border rounded-lg p-4 shadow-soft">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-semibold">Your Intelligence Profile</h3>

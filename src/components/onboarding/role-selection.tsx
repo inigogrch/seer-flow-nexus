@@ -63,9 +63,9 @@ export function RoleSelection({
             key={role.id}
             className={cn(
               "cursor-pointer transition-all duration-200 hover:shadow-medium hover:scale-[1.02]",
-              "border-2 bg-gradient-chrome",
+              "border-2 bg-card/80 backdrop-blur-sm",
               selectedRole === role.id 
-                ? "border-primary shadow-glow" 
+                ? "border-primary shadow-glow animate-glow-pulse" 
                 : "border-border hover:border-primary/50"
             )}
             onClick={() => onRoleSelect(role.id)}
@@ -73,9 +73,9 @@ export function RoleSelection({
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
                 <div className={cn(
-                  "p-3 rounded-lg",
+                  "p-3 rounded-lg transition-all duration-200",
                   selectedRole === role.id 
-                    ? "bg-primary text-primary-foreground" 
+                    ? "bg-primary text-primary-foreground shadow-glow" 
                     : "bg-muted"
                 )}>
                   <role.icon className="h-6 w-6" />
@@ -97,9 +97,9 @@ export function RoleSelection({
         <Card
           className={cn(
             "cursor-pointer transition-all duration-200 hover:shadow-medium",
-            "border-2 bg-gradient-chrome",
+            "border-2 bg-card/80 backdrop-blur-sm",
             selectedRole === "other" 
-              ? "border-primary shadow-glow" 
+              ? "border-primary shadow-glow animate-glow-pulse" 
               : "border-border hover:border-primary/50"
           )}
           onClick={() => onRoleSelect("other")}
@@ -107,9 +107,9 @@ export function RoleSelection({
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
               <div className={cn(
-                "p-3 rounded-lg",
+                "p-3 rounded-lg transition-all duration-200",
                 selectedRole === "other" 
-                  ? "bg-primary text-primary-foreground" 
+                  ? "bg-primary text-primary-foreground shadow-glow" 
                   : "bg-muted"
               )}>
                 <User className="h-6 w-6" />

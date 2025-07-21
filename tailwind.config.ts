@@ -75,7 +75,10 @@ export default {
 			backgroundImage: {
 				'gradient-chrome': 'var(--gradient-chrome)',
 				'gradient-glass': 'var(--gradient-glass)',
-				'gradient-primary': 'var(--gradient-primary)'
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-mesh': 'var(--gradient-mesh)',
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',

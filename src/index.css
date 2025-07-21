@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    /* Core backgrounds */
-    --background: 0 0% 98%;
+    /* Core backgrounds - darker grey theme */
+    --background: 220 8% 96%;
     --foreground: 215 28% 17%;
 
     /* Surface colors */
@@ -22,12 +22,12 @@
     --primary-foreground: 0 0% 98%;
     --primary-glow: 180 100% 50%;
 
-    /* Secondary greys */
-    --secondary: 215 16% 96%;
+    /* Secondary greys - adjusted for darker theme */
+    --secondary: 220 13% 93%;
     --secondary-foreground: 215 28% 17%;
 
     /* Muted colors */
-    --muted: 220 13% 95%;
+    --muted: 220 13% 91%;
     --muted-foreground: 215 14% 45%;
 
     /* Accent for highlights */
@@ -51,18 +51,21 @@
 
     --radius: 0.75rem;
 
-    /* Custom gradients */
-    --gradient-chrome: linear-gradient(135deg, hsl(220 13% 96%), hsl(220 13% 91%));
-    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.8), hsl(220 13% 95% / 0.6));
+    /* Custom gradients - updated for darker theme */
+    --gradient-chrome: linear-gradient(135deg, hsl(220 13% 95%), hsl(220 13% 89%));
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.7), hsl(220 13% 93% / 0.5));
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-mesh: radial-gradient(circle at 20% 80%, hsl(180 100% 95% / 0.3) 0%, transparent 50%),
+                     radial-gradient(circle at 80% 20%, hsl(180 100% 85% / 0.2) 0%, transparent 50%),
+                     radial-gradient(circle at 40% 40%, hsl(200 100% 90% / 0.1) 0%, transparent 50%);
 
     /* Shadows */
-    --shadow-soft: 0 2px 8px hsl(215 28% 17% / 0.05);
-    --shadow-medium: 0 4px 16px hsl(215 28% 17% / 0.1);
-    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.2);
+    --shadow-soft: 0 2px 8px hsl(215 28% 17% / 0.08);
+    --shadow-medium: 0 4px 16px hsl(215 28% 17% / 0.12);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.25);
 
     /* Sidebar */
-    --sidebar-background: 0 0% 100%;
+    --sidebar-background: 220 13% 98%;
     --sidebar-foreground: 215 28% 17%;
     --sidebar-primary: 180 100% 40%;
     --sidebar-primary-foreground: 0 0% 98%;

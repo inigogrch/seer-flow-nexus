@@ -6,6 +6,8 @@ import { ProjectsPriorities } from "@/components/onboarding/projects-priorities"
 import { FeedHeader } from "@/components/feed/feed-header";
 import { Filters } from "@/components/feed/filters";
 import { StoryCard } from "@/components/feed/story-card";
+import { FloatingElements } from "@/components/ui/floating-elements";
+import { GeometricPattern } from "@/components/ui/geometric-pattern";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -90,8 +92,13 @@ const Index = () => {
   // If onboarding is not complete, show onboarding flow
   if (!isOnboardingComplete) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-6">
-        <div className="w-full max-w-6xl">
+      <div className="min-h-screen bg-background flex items-center justify-center p-6 relative overflow-hidden">
+        {/* Background visual elements for onboarding */}
+        <div className="absolute inset-0 bg-gradient-mesh" />
+        <FloatingElements />
+        <GeometricPattern variant="hexagons" />
+        
+        <div className="w-full max-w-6xl relative z-10">
           {/* Progress indicators */}
           <div className="flex justify-center mb-8">
             <div className="flex items-center gap-2">

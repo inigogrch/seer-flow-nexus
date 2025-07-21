@@ -24,7 +24,7 @@ export function ProjectsPriorities({
         </p>
       </div>
 
-      <Card className="max-w-2xl mx-auto bg-gradient-chrome border-2">
+      <Card className="max-w-2xl mx-auto bg-card/80 backdrop-blur-sm border-2 shadow-soft">
         <CardContent className="p-8">
           <div className="space-y-6">
             <div>
