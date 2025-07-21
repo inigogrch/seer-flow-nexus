@@ -198,7 +198,7 @@ const Index = () => {
   // Show the main feed
   return (
     <AppLayout>
-      <div className="space-y-6 animate-fade-in">
+      <div className="space-y-6 animate-fade-in mt-2">
         <FeedHeader 
           storiesCount={mockStories.length}
           userProfile={{
