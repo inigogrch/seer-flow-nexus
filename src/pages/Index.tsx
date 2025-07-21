@@ -8,6 +8,7 @@ import { Filters } from "@/components/feed/filters";
 import { StoryCard } from "@/components/feed/story-card";
 import { FloatingElements } from "@/components/ui/floating-elements";
 import { GeometricPattern } from "@/components/ui/geometric-pattern";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -221,18 +222,20 @@ const Index = () => {
         />
 
         {/* 🔄 MIGRATION TODO: Replace mockStories with real data from API */}
-        <div className="space-y-4">
-          {mockStories.map((story) => (
-            <StoryCard 
-              key={story.id} 
-              story={story}
-              className="animate-slide-in"
-              // 🔄 MIGRATION TODO: Add real interaction handlers
-              // onBookmark={(storyId) => handleBookmark(storyId)}
-              // onShare={(storyId) => handleShare(storyId)}
-            />
-          ))}
-        </div>
+        <ScrollArea className="h-[calc(100vh-320px)] pr-4">
+          <div className="space-y-4">
+            {mockStories.map((story) => (
+              <StoryCard 
+                key={story.id} 
+                story={story}
+                className="animate-slide-in"
+                // 🔄 MIGRATION TODO: Add real interaction handlers
+                // onBookmark={(storyId) => handleBookmark(storyId)}
+                // onShare={(storyId) => handleShare(storyId)}
+              />
+            ))}
+          </div>
+        </ScrollArea>
       </div>
     </AppLayout>
   );
