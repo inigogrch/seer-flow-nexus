@@ -10,7 +10,7 @@ export function Logo({ className, size = "md" }: LogoProps) {
   const sizeClasses = {
     sm: "h-5 w-5",
     md: "h-6 w-6", 
-    lg: "h-8 w-8"
+    lg: "h-10 w-10"
   };
 
   return (
@@ -21,7 +21,7 @@ export function Logo({ className, size = "md" }: LogoProps) {
       )}>
         <Eye className="h-full w-full text-primary-foreground" />
       </div>
-      <span className="font-bold text-lg tracking-tight">seer</span>
+      <span className="font-bold text-xl tracking-tight">seer</span>
     </div>
   );
 }
