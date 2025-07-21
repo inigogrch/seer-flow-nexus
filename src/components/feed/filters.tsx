@@ -1,8 +1,7 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/ui/logo";
-import { Filter, SlidersHorizontal } from "lucide-react";
+import { Search, Filter, SlidersHorizontal } from "lucide-react";
 
 interface FiltersProps {
   searchQuery: string;
@@ -29,7 +28,7 @@ export function Filters({
     <div className="space-y-4">
       {/* Search */}
       <div className="relative">
-        <Logo className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
         <Input
           placeholder="Search intelligence..."
           value={searchQuery}
