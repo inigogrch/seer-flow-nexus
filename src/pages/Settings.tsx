@@ -27,8 +27,10 @@ export default function Settings() {
         <CardContent className="space-y-4">
           <div>
             <label className="text-sm font-medium">Role</label>
+            {/* 🔄 MIGRATION TODO: Replace with real user data from API/database */}
             <p className="text-sm text-muted-foreground">Data Scientist</p>
             <Button variant="outline" size="sm" className="mt-2">
+              {/* 🔄 MIGRATION TODO: Wire this to actual profile update functionality */}
               Update Role
             </Button>
           </div>
@@ -36,6 +38,7 @@ export default function Settings() {
           <div>
             <label className="text-sm font-medium">Tech Interests</label>
             <div className="flex flex-wrap gap-2 mt-2">
+              {/* 🔄 MIGRATION TODO: Replace with real user interests from API */}
               {["Computer Vision", "LLMs", "MLOps", "Cloud AI"].map((interest) => (
                 <Badge key={interest} variant="secondary">
                   {interest}
@@ -43,6 +46,7 @@ export default function Settings() {
               ))}
             </div>
             <Button variant="outline" size="sm" className="mt-2">
+              {/* 🔄 MIGRATION TODO: Wire this to actual interests management */}
               Manage Interests
             </Button>
           </div>
@@ -58,12 +62,16 @@ export default function Settings() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
+          {/* 🔄 MIGRATION TODO: Wire these switches to real user preferences API */}
           <div className="flex items-center justify-between">
             <div>
               <p className="font-medium">High Impact Stories</p>
               <p className="text-sm text-muted-foreground">Get notified about breakthrough developments</p>
             </div>
-            <Switch defaultChecked />
+            <Switch 
+              defaultChecked 
+              // 🔄 TODO: onCheckedChange={(checked) => updateNotificationSetting('highImpact', checked)}
+            />
           </div>
           
           <div className="flex items-center justify-between">
@@ -71,7 +79,10 @@ export default function Settings() {
               <p className="font-medium">Daily Digest</p>
               <p className="text-sm text-muted-foreground">Receive a summary of top stories each morning</p>
             </div>
-            <Switch defaultChecked />
+            <Switch 
+              defaultChecked 
+              // 🔄 TODO: onCheckedChange={(checked) => updateNotificationSetting('dailyDigest', checked)}
+            />
           </div>
           
           <div className="flex items-center justify-between">
@@ -79,7 +90,9 @@ export default function Settings() {
               <p className="font-medium">Weekly Trends</p>
               <p className="text-sm text-muted-foreground">Weekly analysis of emerging trends</p>
             </div>
-            <Switch />
+            <Switch 
+              // 🔄 TODO: onCheckedChange={(checked) => updateNotificationSetting('weeklyTrends', checked)}
+            />
           </div>
         </CardContent>
       </Card>
@@ -130,10 +143,19 @@ export default function Settings() {
           </div>
           
           <div>
-            <Button variant="outline" className="mr-3">
+            <Button 
+              variant="outline" 
+              className="mr-3"
+              // 🔄 MIGRATION TODO: Wire to real data export functionality
+              // onClick={() => exportUserData()}
+            >
               Export Data
             </Button>
-            <Button variant="outline">
+            <Button 
+              variant="outline"
+              // 🔄 MIGRATION TODO: Wire to real data clearing functionality  
+              // onClick={() => clearUserHistory()}
+            >
               Clear History
             </Button>
           </div>
@@ -154,7 +176,11 @@ export default function Settings() {
             <p className="text-sm text-muted-foreground mb-2">
               Integrate seer.ai intelligence into your own applications
             </p>
-            <Button variant="outline">
+            <Button 
+              variant="outline"
+              // 🔄 MIGRATION TODO: Wire to real API key generation
+              // onClick={() => generateApiKey()}
+            >
               Get API Key
             </Button>
           </div>

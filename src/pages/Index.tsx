@@ -11,7 +11,10 @@ import { GeometricPattern } from "@/components/ui/geometric-pattern";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-// Mock data for demonstration
+// ============================================================================
+// 🔄 MIGRATION TODO: Replace this mock data with real API calls
+// ============================================================================
+// Mock data for demonstration - REPLACE WITH REAL API INTEGRATION
 const mockStories = [
   {
     id: "1",
@@ -23,7 +26,7 @@ const mockStories = [
     impact: "High" as const,
     categories: ["llms", "computer-vision", "automation"],
     readTime: "6 min read",
-    url: "https://example.com"
+    url: "https://example.com" // 🔄 REPLACE with real article URLs
   },
   {
     id: "2", 
@@ -35,7 +38,7 @@ const mockStories = [
     impact: "Medium" as const,
     categories: ["computer-vision", "edge-computing", "optimization"],
     readTime: "5 min read",
-    url: "https://example.com"
+    url: "https://example.com" // 🔄 REPLACE with real article URLs
   },
   {
     id: "3",
@@ -47,9 +50,10 @@ const mockStories = [
     impact: "High" as const,
     categories: ["snowflake", "llms", "data-warehousing"],
     readTime: "4 min read",
-    url: "https://example.com"
+    url: "https://example.com" // 🔄 REPLACE with real article URLs
   }
 ];
+// ============================================================================
 
 const Index = () => {
   // Onboarding state
@@ -79,8 +83,24 @@ const Index = () => {
   const handleOnboardingComplete = async () => {
     setIsLoading(true);
     
-    // Simulate API call
+    // ============================================================================
+    // 🔄 MIGRATION TODO: Replace with real API call to /api/feed endpoint
+    // ============================================================================
+    // Simulate API call - REPLACE WITH REAL API INTEGRATION
+    // Expected API call:
+    // const userData = {
+    //   role: selectedRole === "other" ? otherRole : selectedRole,
+    //   interests: [...selectedInterests, ...otherInterests.split(",").map(s => s.trim()).filter(Boolean)],
+    //   projects: projects
+    // };
+    // const response = await fetch('/api/feed', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(userData)
+    // });
+    // const feedData = await response.json();
     await new Promise(resolve => setTimeout(resolve, 2000));
+    // ============================================================================
     
     setIsLoading(false);
     setIsOnboardingComplete(true);
@@ -184,6 +204,8 @@ const Index = () => {
             role: selectedRole === "other" ? otherRole : selectedRole || "",
             interests: [...selectedInterests, ...otherInterests.split(",").map(s => s.trim()).filter(Boolean)]
           }}
+          // 🔄 MIGRATION TODO: Add onRefresh handler that calls real API
+          // onRefresh={() => fetchLatestStories()}
         />
 
         <Filters
@@ -195,14 +217,19 @@ const Index = () => {
           onImpactChange={setSelectedImpact}
           selectedTimeframe={selectedTimeframe}
           onTimeframeChange={setSelectedTimeframe}
+          // 🔄 MIGRATION TODO: These filters should trigger API calls to filter stories
         />
 
+        {/* 🔄 MIGRATION TODO: Replace mockStories with real data from API */}
         <div className="space-y-4">
           {mockStories.map((story) => (
             <StoryCard 
               key={story.id} 
               story={story}
               className="animate-slide-in"
+              // 🔄 MIGRATION TODO: Add real interaction handlers
+              // onBookmark={(storyId) => handleBookmark(storyId)}
+              // onShare={(storyId) => handleShare(storyId)}
             />
           ))}
         </div>

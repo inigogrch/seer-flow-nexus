@@ -93,16 +93,30 @@ export function StoryCard({ story, className }: StoryCardProps) {
             </div>
             
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="hover:bg-accent">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="hover:bg-accent"
+                // 🔄 MIGRATION TODO: Wire to real bookmark functionality
+                // onClick={() => onBookmark?.(story.id)}
+              >
                 <Bookmark className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="sm" className="hover:bg-accent">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="hover:bg-accent"
+                // 🔄 MIGRATION TODO: Wire to real comment/discussion functionality
+                // onClick={() => onComment?.(story.id)}
+              >
                 <MessageCircle className="h-4 w-4" />
               </Button>
               <Button 
                 size="sm"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground"
                 onClick={() => window.open(story.url, '_blank')}
+                // 🔄 MIGRATION TODO: Add analytics tracking for article clicks
+                // onClick={() => { trackArticleClick(story.id); window.open(story.url, '_blank'); }}
               >
                 Read
                 <ExternalLink className="ml-1 h-3 w-3" />

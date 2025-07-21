@@ -5,6 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Send, Sparkles } from "lucide-react";
 
+// ============================================================================
+// 🔄 MIGRATION TODO: Replace with real AI chat prompts from your system
+// ============================================================================
 const samplePrompts = [
   "Give me a daily digest of AI breakthroughs",
   "Any new research on AI Agents?", 
@@ -13,6 +16,7 @@ const samplePrompts = [
   "Latest developments in LLMs",
   "Trending in Data Engineering"
 ];
+// ============================================================================
 
 import { AppLayout } from "@/components/layout/app-layout";
 
@@ -32,7 +36,22 @@ export default function Chat() {
     setMessages(prev => [...prev, newMessage]);
     setMessage("");
     
-    // Simulate AI response
+    // ============================================================================
+    // 🔄 MIGRATION TODO: Replace with real API call to /api/chat endpoint
+    // ============================================================================
+    // Real implementation should be:
+    // const response = await fetch('/api/chat', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ 
+    //     message: message,
+    //     conversationId: conversationId,
+    //     userContext: userProfile 
+    //   })
+    // });
+    // const aiResponse = await response.json();
+    
+    // Simulate AI response - REMOVE THIS SIMULATION
     setTimeout(() => {
       const aiResponse = {
         id: (Date.now() + 1).toString(),
@@ -41,6 +60,7 @@ export default function Chat() {
       };
       setMessages(prev => [...prev, aiResponse]);
     }, 1000);
+    // ============================================================================
   };
 
   const handlePromptClick = (prompt: string) => {
