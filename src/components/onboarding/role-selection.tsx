@@ -109,7 +109,7 @@ export function RoleSelection({
           onClick={() => onRoleSelect("other")}
         >
           <CardContent className="p-6">
-            <div className="flex items-center gap-4">
+            <div className="flex items-end gap-4">
               <div className={cn(
                 "p-3 rounded-lg transition-all duration-200 flex-shrink-0",
                 selectedRole === "other" 
@@ -119,7 +119,6 @@ export function RoleSelection({
                 <User className="h-6 w-6" />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-lg mb-3">Other</h3>
                 <input
                   type="text"
                   placeholder="Founder, Consultant, Product Manager, etc."
