@@ -120,21 +120,6 @@ const Index = () => {
         <GeometricPattern variant="hexagons" />
         
         <div className="w-full max-w-6xl relative z-10">
-          {/* Progress indicators */}
-          <div className="flex justify-center mb-8">
-            <div className="flex items-center gap-2">
-              <div className={`h-2 w-8 rounded-full transition-colors ${
-                onboardingStep >= 1 ? "bg-primary" : "bg-muted"
-              }`} />
-              <div className={`h-2 w-8 rounded-full transition-colors ${
-                onboardingStep >= 2 ? "bg-primary" : "bg-muted"
-              }`} />
-              <div className={`h-2 w-8 rounded-full transition-colors ${
-                onboardingStep >= 3 ? "bg-primary" : "bg-muted"
-              }`} />
-            </div>
-          </div>
-
           {/* Step content */}
           {onboardingStep === 1 && (
             <RoleSelection
@@ -162,6 +147,21 @@ const Index = () => {
               isLoading={isLoading}
             />
           )}
+
+          {/* Progress indicators */}
+          <div className="flex justify-center mt-8 mb-8">
+            <div className="flex items-center gap-2">
+              <div className={`h-2 w-8 rounded-full transition-colors ${
+                onboardingStep >= 1 ? "bg-primary" : "bg-muted"
+              }`} />
+              <div className={`h-2 w-8 rounded-full transition-colors ${
+                onboardingStep >= 2 ? "bg-primary" : "bg-muted"
+              }`} />
+              <div className={`h-2 w-8 rounded-full transition-colors ${
+                onboardingStep >= 3 ? "bg-primary" : "bg-muted"
+              }`} />
+            </div>
+          </div>
 
           {/* Navigation */}
           {onboardingStep < 3 && (
