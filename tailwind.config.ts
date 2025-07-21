@@ -72,8 +72,10 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
-				mono: ['var(--font-geist-mono)', 'monospace'],
+				geist: ['Geist', 'system-ui', 'sans-serif'],
+				'geist-mono': ['Geist Mono', 'monospace'],
+				sans: ['Geist', 'system-ui', 'sans-serif'],
+				mono: ['Geist Mono', 'monospace'],
 			},
 			backgroundImage: {
 				'gradient-chrome': 'var(--gradient-chrome)',
