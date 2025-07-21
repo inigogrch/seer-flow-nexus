@@ -21,7 +21,7 @@ export function Logo({ className, size = "md" }: LogoProps) {
       )}>
         <Eye className="h-full w-full text-primary-foreground" />
       </div>
-      <span className="font-bold text-lg tracking-tight">seer.ai</span>
+      <span className="font-bold text-lg tracking-tight">seer</span>
     </div>
   );
 }
