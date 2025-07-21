@@ -11,8 +11,11 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   return (
     <div className="min-h-screen bg-background flex w-full relative overflow-hidden">
-      {/* Simplified background */}
-      <div className="absolute inset-0 bg-gradient-mesh opacity-30" />
+      {/* Background visual elements */}
+      <div className="absolute inset-0 bg-gradient-mesh" />
+      <AnimatedBackground />
+      <FloatingElements />
+      <GeometricPattern variant="dots" />
       
       {/* Main content */}
       <div className="relative z-10 flex w-full">
