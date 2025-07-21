@@ -67,6 +67,7 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedImpact, setSelectedImpact] = useState("all");
   const [selectedTimeframe, setSelectedTimeframe] = useState("all");
+  const [selectedIndustry, setSelectedIndustry] = useState("all");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleInterestToggle = (interest: string) => {
@@ -200,6 +201,8 @@ export default function HomePage() {
           onImpactChange={setSelectedImpact}
           selectedTimeframe={selectedTimeframe}
           onTimeframeChange={setSelectedTimeframe}
+          selectedIndustry={selectedIndustry}
+          onIndustryChange={setSelectedIndustry}
         />
 
         <div className="grid gap-6">
