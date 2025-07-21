@@ -33,8 +33,7 @@ export function StoryCard({ story, className }: StoryCardProps) {
   return (
     <Card className={cn(
       "group cursor-pointer transition-all duration-300",
-      "hover:shadow-medium hover:scale-[1.01] hover:-translate-y-1",
-      "bg-card/80 backdrop-blur-sm border-2 border-border hover:border-primary/30",
+      "bg-card/80 backdrop-blur-sm border-2 border-border",
       className
     )}>
       <CardContent className="p-6">

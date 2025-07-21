@@ -201,10 +201,7 @@
     transition: transform 0.3s ease-out;
   }
 
-  .story-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
+  /* Removed problematic hover effect */
 }
 
 @keyframes fadeIn {
