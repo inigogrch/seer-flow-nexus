@@ -82,20 +82,22 @@ export function StoryCard({ story, className }: StoryCardProps) {
             </div>
 
             {/* Content */}
-            <div className="space-y-2 flex-1 min-h-0">
-              <h3 className="font-bold text-sm leading-tight group-hover:text-primary transition-colors h-[2.5rem] overflow-hidden">
-                <span className="line-clamp-2">
-                  {story.title}
-                </span>
-              </h3>
-              <p className="text-muted-foreground text-xs leading-relaxed h-[2.2rem] overflow-hidden">
-                <span className="line-clamp-2">
-                  {story.summary}
-                </span>
-              </p>
+            <div className="flex-1 flex flex-col justify-between min-h-0">
+              <div className="space-y-2">
+                <h3 className="font-bold text-sm leading-tight group-hover:text-primary transition-colors">
+                  <span className="line-clamp-3">
+                    {story.title}
+                  </span>
+                </h3>
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  <span className="line-clamp-4">
+                    {story.summary}
+                  </span>
+                </p>
+              </div>
               
-              {/* Categories */}
-              <div className="flex items-center gap-1 flex-wrap">
+              {/* Categories at bottom */}
+              <div className="flex items-center gap-1 flex-wrap mt-2">
                 {story.categories.slice(0, 6).map((category) => (
                   <Badge key={category} variant="secondary" className="text-xs px-1.5 py-0.5 h-5">
                     {category}
