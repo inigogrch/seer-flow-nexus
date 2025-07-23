@@ -173,7 +173,7 @@ export default function Feed() {
 
   return (
     <AppLayout>
-      <div className="h-full overflow-y-auto">
+      <div className="h-full overflow-y-auto max-h-screen">
         <div className="space-y-6 pb-6">
           {/* Header */}
           <FeedHeader 
