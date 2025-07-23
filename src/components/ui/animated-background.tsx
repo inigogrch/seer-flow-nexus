@@ -33,8 +33,8 @@ export function AnimatedBackground({ className }: AnimatedBackgroundProps) {
       hue: number;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * (canvas?.width || 800);
+        this.y = Math.random() * (canvas?.height || 600);
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
         this.size = Math.random() * 3 + 1;
@@ -46,14 +46,15 @@ export function AnimatedBackground({ className }: AnimatedBackgroundProps) {
         this.x += this.vx;
         this.y += this.vy;
 
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        if (this.x < 0 || this.x > (canvas?.width || 800)) this.vx *= -1;
+        if (this.y < 0 || this.y > (canvas?.height || 600)) this.vy *= -1;
 
-        this.x = Math.max(0, Math.min(canvas.width, this.x));
-        this.y = Math.max(0, Math.min(canvas.height, this.y));
+        this.x = Math.max(0, Math.min(canvas?.width || 800, this.x));
+        this.y = Math.max(0, Math.min(canvas?.height || 600, this.y));
       }
 
       draw() {
+        if (!ctx) return;
         ctx.save();
         ctx.globalAlpha = this.opacity;
         ctx.fillStyle = `hsl(${this.hue}, 70%, 60%)`;
