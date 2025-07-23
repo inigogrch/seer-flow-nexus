@@ -68,64 +68,64 @@ export default function Chat() {
   };
 
   return (
-    <AppLayout fullHeight={true}>
-      <div className="flex flex-col max-w-4xl mx-auto h-full p-6">
-        {/* Header */}
+    <AppLayout>
+      <div className="h-full flex flex-col max-w-4xl mx-auto">
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold mb-2">Intelligence Chat</h1>
+        <p className="text-muted-foreground">
+          Ask questions about the latest tech developments and get AI-powered insights
+        </p>
+      </div>
+
+      {/* Sample Prompts */}
+      {messages.length === 0 && (
         <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-2">Intelligence Chat</h1>
-          <p className="text-muted-foreground">
-            Ask questions about the latest tech developments and get AI-powered insights
-          </p>
-        </div>
-
-        {/* Sample Prompts */}
-        {messages.length === 0 && (
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Sparkles className="h-5 w-5" />
-              Try asking about:
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {samplePrompts.map((prompt, index) => (
-                <Badge
-                  key={index}
-                  variant="outline"
-                  className="cursor-pointer justify-start p-3 text-sm hover:bg-accent hover:text-accent-foreground transition-colors"
-                  onClick={() => handlePromptClick(prompt)}
-                >
-                  {prompt}
-                </Badge>
-              ))}
-            </div>
+          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+            <Sparkles className="h-5 w-5" />
+            Try asking about:
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {samplePrompts.map((prompt, index) => (
+              <Badge
+                key={index}
+                variant="outline"
+                className="cursor-pointer justify-start p-3 text-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+                onClick={() => handlePromptClick(prompt)}
+              >
+                {prompt}
+              </Badge>
+            ))}
           </div>
-        )}
-
-        {/* Messages */}
-        <div className="flex-1 space-y-4 mb-6 overflow-y-auto min-h-0">
-          {messages.map((msg) => (
-            <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-              <Card className={`max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>
-                <CardContent className="p-4">
-                  <p className="text-sm">{msg.text}</p>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
         </div>
+      )}
 
-        {/* Input - Fixed at bottom */}
-        <div className="flex gap-3 mt-auto">
-          <Input
-            placeholder="Ask about the latest in AI, ML, data engineering, or any tech topic..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-            className="flex-1"
-          />
-          <Button onClick={handleSendMessage} disabled={!message.trim()}>
-            <Send className="h-4 w-4" />
-          </Button>
-        </div>
+      {/* Messages */}
+      <div className="flex-1 space-y-4 mb-6 overflow-y-auto">
+        {messages.map((msg) => (
+          <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <Card className={`max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>
+              <CardContent className="p-4">
+                <p className="text-sm">{msg.text}</p>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </div>
+
+      {/* Input */}
+      <div className="flex gap-3">
+        <Input
+          placeholder="Ask about the latest in AI, ML, data engineering, or any tech topic..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+          className="flex-1"
+        />
+        <Button onClick={handleSendMessage} disabled={!message.trim()}>
+          <Send className="h-4 w-4" />
+        </Button>
+      </div>
       </div>
     </AppLayout>
   );

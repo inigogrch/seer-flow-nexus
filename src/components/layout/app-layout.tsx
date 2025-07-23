@@ -6,10 +6,9 @@ import { GeometricPattern } from "@/components/ui/geometric-pattern";
 
 interface AppLayoutProps {
   children: ReactNode;
-  fullHeight?: boolean; // New prop for full-height layouts
 }
 
-export function AppLayout({ children, fullHeight = false }: AppLayoutProps) {
+export function AppLayout({ children }: AppLayoutProps) {
   return (
     <div className="min-h-screen bg-background flex w-full relative overflow-hidden">
       {/* Background visual elements */}
@@ -19,18 +18,12 @@ export function AppLayout({ children, fullHeight = false }: AppLayoutProps) {
       <GeometricPattern variant="dots" />
       
       {/* Main content */}
-      <div className="relative z-10 flex w-full h-screen">
+      <div className="relative z-10 flex w-full">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto">
-          {fullHeight ? (
-            <div className="h-full">
-              {children}
-            </div>
-          ) : (
-            <div className="p-6">
-              {children}
-            </div>
-          )}
+        <main className="flex-1 p-6 overflow-hidden">
+          <div className="h-full">
+            {children}
+          </div>
         </main>
       </div>
     </div>

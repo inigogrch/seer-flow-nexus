@@ -115,10 +115,10 @@ export default function Personalize() {
   };
 
   return (
-    <AppLayout fullHeight={true}>
-      <div className="flex flex-col h-full">
+    <AppLayout>
+      <div className="h-full flex flex-col">
         {/* Full page step content */}
-        <div className="flex-1 flex items-center justify-center min-h-0">
+        <div className="flex-1 flex items-center justify-center">
           {renderStepContent()}
         </div>
 
