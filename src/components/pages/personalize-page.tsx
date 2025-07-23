@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { AppLayout } from "@/components/layout/app-layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,7 +11,7 @@ import { ProjectsPriorities } from "@/components/onboarding/projects-priorities"
 import { ArrowLeft, ArrowRight, Sparkles, CheckCircle } from "lucide-react";
 
 export function PersonalizePage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [selectedRole, setSelectedRole] = useState("");
   const [otherRole, setOtherRole] = useState("");
@@ -63,11 +63,11 @@ export function PersonalizePage() {
       }
       
       // Redirect to feed
-      router.push('/feed');
+      navigate('/feed');
     } catch (error) {
       console.error('Failed to save preferences:', error);
       // Still redirect to feed with localStorage data
-      router.push('/feed');
+      navigate('/feed');
     } finally {
       setIsSubmitting(false);
     }
@@ -128,7 +128,7 @@ export function PersonalizePage() {
         <div className="flex justify-between items-center p-6 bg-background/80 backdrop-blur-sm border-t border-border">
           <Button
             variant="outline"
-            onClick={() => step > 1 ? setStep(step - 1) : router.push('/')}
+            onClick={() => step > 1 ? setStep(step - 1) : navigate('/')}
             className="bg-background/50 backdrop-blur-sm"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
