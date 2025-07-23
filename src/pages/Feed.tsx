@@ -173,55 +173,53 @@ export default function Feed() {
 
   return (
     <AppLayout>
-      <div className="h-full overflow-y-auto">
-        <div className="space-y-6 pb-6">
-          {/* Header */}
-          <FeedHeader 
-            storiesCount={mockStories.length * feedRows.length}
-            isLoading={isLoading}
-            onRefresh={handleRefresh}
-            userProfile={userPreferences ? {
-              role: userPreferences.role,
-              interests: userPreferences.interests
-            } : undefined}
-          />
+      <div className="space-y-6">
+        {/* Header */}
+        <FeedHeader 
+          storiesCount={mockStories.length * feedRows.length}
+          isLoading={isLoading}
+          onRefresh={handleRefresh}
+          userProfile={userPreferences ? {
+            role: userPreferences.role,
+            interests: userPreferences.interests
+          } : undefined}
+        />
 
-          {/* Filters */}
-          <Filters
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-            selectedImpact={selectedImpact}
-            onImpactChange={setSelectedImpact}
-            selectedTimeframe={selectedTimeframe}
-            onTimeframeChange={setSelectedTimeframe}
-            selectedIndustry={selectedIndustry}
-            onIndustryChange={setSelectedIndustry}
-          />
+        {/* Filters */}
+        <Filters
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+          selectedImpact={selectedImpact}
+          onImpactChange={setSelectedImpact}
+          selectedTimeframe={selectedTimeframe}
+          onTimeframeChange={setSelectedTimeframe}
+          selectedIndustry={selectedIndustry}
+          onIndustryChange={setSelectedIndustry}
+        />
 
-          {/* Feed Rows */}
-          <div className="space-y-8">
-            {feedRows.map((row, index) => (
-              <FeedRow
-                key={`${row.query}-${index}`}
-                title={row.title}
-                stories={mockStories} // TODO: Fetch based on row.query
-                isLoading={isLoading}
-              />
-            ))}
-          </div>
-
-          {/* TODO: Add migration note */}
-          {/* 
-          MIGRATION TODO:
-          1. Replace mockStories with actual API calls to GET /api/feed?query={row.query}
-          2. Implement vector relevance scoring for personalized content
-          3. Add caching mechanism for feed data
-          4. Implement real-time updates for trending content
-          5. Add pagination for large result sets
-          */}
+        {/* Feed Rows */}
+        <div className="space-y-8">
+          {feedRows.map((row, index) => (
+            <FeedRow
+              key={`${row.query}-${index}`}
+              title={row.title}
+              stories={mockStories} // TODO: Fetch based on row.query
+              isLoading={isLoading}
+            />
+          ))}
         </div>
+
+        {/* TODO: Add migration note */}
+        {/* 
+        MIGRATION TODO:
+        1. Replace mockStories with actual API calls to GET /api/feed?query={row.query}
+        2. Implement vector relevance scoring for personalized content
+        3. Add caching mechanism for feed data
+        4. Implement real-time updates for trending content
+        5. Add pagination for large result sets
+        */}
       </div>
     </AppLayout>
   );
