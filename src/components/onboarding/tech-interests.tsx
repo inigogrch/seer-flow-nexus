@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 const techInterests = [
   "LLMs",
   "Snowflake", 
+  "Computer Vision",
   "Robotics",
   "Cloud AI",
   "Data Visualization",
