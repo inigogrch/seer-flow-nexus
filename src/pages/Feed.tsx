@@ -4,7 +4,7 @@ import { FeedRow } from "@/components/feed/feed-row";
 import { FeedHeader } from "@/components/feed/feed-header";
 import { Button } from "@/components/ui/button";
 import { Filters } from "@/components/feed/filters";
-import { Sparkles, TrendingUp, Zap, Globe, Star } from "lucide-react";
+import { Sparkles, TrendingUp, Zap, Globe, Star, ChevronUp, ChevronDown } from "lucide-react";
 
 // Mock story data - TODO: Replace with actual API calls
 const mockStories = [
@@ -106,22 +106,16 @@ const mockStories = [
   }
 ];
 
-// Default feed rows for non-personalized users
-const DEFAULT_ROWS = [
-  { title: "🔥 Trending Now", query: "trending", icon: TrendingUp },
-  { title: "🚀 Latest Breakthroughs", query: "breakthroughs", icon: Zap },
-  { title: "🌐 Industry News", query: "industry", icon: Globe },
-  { title: "⭐ Editor's Picks", query: "editors-picks", icon: Star }
+// Static feed rows
+const STATIC_ROWS = [
+  { id: "1", title: "✨ Top Picks", icon: Sparkles },
+  { id: "2", title: "💻 Software Engineering", icon: TrendingUp },
+  { id: "3", title: "🤖 AI Agents", icon: Zap },
+  { id: "4", title: "🔬 Research Highlights", icon: Globe }
 ];
 
-interface UserPreferences {
-  role: string;
-  interests: string[];
-  projects: string[];
-}
-
 export default function Feed() {
-  const [userPreferences, setUserPreferences] = useState<UserPreferences | null>(null);
+  const [feedRows, setFeedRows] = useState(STATIC_ROWS);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedImpact, setSelectedImpact] = useState("all");
@@ -129,34 +123,12 @@ export default function Feed() {
   const [selectedIndustry, setSelectedIndustry] = useState("all");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Load user preferences from localStorage on mount
-  useEffect(() => {
-    const savedPrefs = localStorage.getItem('user_preferences');
-    if (savedPrefs) {
-      try {
-        setUserPreferences(JSON.parse(savedPrefs));
-      } catch (error) {
-        console.error('Failed to parse user preferences:', error);
-      }
-    }
-  }, []);
-
-  // Generate personalized rows based on user preferences
-  const getPersonalizedRows = (preferences: UserPreferences) => {
-    const rows = [
-      { title: "✨ Top Picks for You", query: `personalized-${preferences.role}`, icon: Sparkles },
-      ...preferences.interests.slice(0, 3).map(interest => ({
-        title: `🎯 ${interest}`,
-        query: interest.toLowerCase().replace(/\s+/g, '-'),
-        icon: TrendingUp
-      })),
-      { title: "🔥 Trending in Your Field", query: `trending-${preferences.role}`, icon: TrendingUp },
-      { title: "📈 Latest Updates", query: "latest", icon: Zap }
-    ];
-    return rows;
+  const moveRow = (fromIndex: number, toIndex: number) => {
+    const newRows = [...feedRows];
+    const [movedRow] = newRows.splice(fromIndex, 1);
+    newRows.splice(toIndex, 0, movedRow);
+    setFeedRows(newRows);
   };
-
-  const feedRows = userPreferences ? getPersonalizedRows(userPreferences) : DEFAULT_ROWS;
 
   const handleRefresh = async () => {
     setIsLoading(true);
@@ -180,10 +152,6 @@ export default function Feed() {
             storiesCount={mockStories.length * feedRows.length}
             isLoading={isLoading}
             onRefresh={handleRefresh}
-            userProfile={userPreferences ? {
-              role: userPreferences.role,
-              interests: userPreferences.interests
-            } : undefined}
           />
 
           {/* Filters */}
@@ -203,12 +171,36 @@ export default function Feed() {
           {/* Feed Rows */}
           <div className="space-y-8">
             {feedRows.map((row, index) => (
-              <FeedRow
-                key={`${row.query}-${index}`}
-                title={row.title}
-                stories={mockStories} // TODO: Fetch based on row.query
-                isLoading={isLoading}
-              />
+              <div key={row.id} className="relative">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-bold">{row.title}</h2>
+                  <div className="flex items-center gap-1">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => index > 0 && moveRow(index, index - 1)}
+                      disabled={index === 0}
+                      className="h-8 w-8 p-0"
+                    >
+                      <ChevronUp className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => index < feedRows.length - 1 && moveRow(index, index + 1)}
+                      disabled={index === feedRows.length - 1}
+                      className="h-8 w-8 p-0"
+                    >
+                      <ChevronDown className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                <FeedRow
+                  title=""
+                  stories={mockStories}
+                  isLoading={isLoading}
+                />
+              </div>
             ))}
           </div>
 

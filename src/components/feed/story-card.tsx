@@ -24,21 +24,16 @@ interface StoryCardProps {
 }
 
 export function StoryCard({ story, className }: StoryCardProps) {
-  const impactColors = {
-    High: "bg-destructive text-destructive-foreground",
-    Medium: "bg-warning text-warning-foreground", 
-    Low: "bg-muted text-muted-foreground"
-  };
-
   return (
     <Card className={cn(
       "group cursor-pointer transition-all duration-300",
       "hover:shadow-medium hover:scale-[1.01] hover:-translate-y-1",
       "bg-card/80 backdrop-blur-sm border-2 border-border hover:border-primary/30",
+      "w-80 h-64", // Make cards bigger
       className
     )}>
-      <CardContent className="p-6">
-        <div className="space-y-4">
+      <CardContent className="p-6 h-full">
+        <div className="space-y-4 h-full flex flex-col">
           {/* Header */}
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -62,9 +57,6 @@ export function StoryCard({ story, className }: StoryCardProps) {
             </div>
             
             <div className="flex items-center gap-2">
-              <Badge className={cn("text-xs", impactColors[story.impact])}>
-                {story.impact} Impact
-              </Badge>
               <Badge variant="outline" className="text-xs">
                 {story.relevance}% relevance
               </Badge>
@@ -72,17 +64,17 @@ export function StoryCard({ story, className }: StoryCardProps) {
           </div>
 
           {/* Content */}
-          <div className="space-y-3">
+          <div className="space-y-3 flex-1">
             <h3 className="font-bold text-lg leading-tight group-hover:text-primary transition-colors">
               {story.title}
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-4">
               {story.summary}
             </p>
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-between pt-2">
+          <div className="flex items-center justify-between pt-2 mt-auto">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs text-muted-foreground">{story.readTime}</span>
               {story.categories.slice(0, 3).map((category) => (
