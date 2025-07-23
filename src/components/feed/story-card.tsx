@@ -83,29 +83,29 @@ export function StoryCard({ story, className }: StoryCardProps) {
 
             {/* Content */}
             <div className="space-y-2 flex-1 min-h-0">
-              <h3 className="font-bold text-sm leading-tight group-hover:text-primary transition-colors">
-                <span className="line-clamp-3">
+              <h3 className="font-bold text-sm leading-tight group-hover:text-primary transition-colors h-[2.5rem] overflow-hidden">
+                <span className="line-clamp-2">
                   {story.title}
                 </span>
               </h3>
-              <p className="text-muted-foreground text-xs leading-relaxed">
-                <span className="line-clamp-4">
+              <p className="text-muted-foreground text-xs leading-relaxed h-[2.2rem] overflow-hidden">
+                <span className="line-clamp-2">
                   {story.summary}
                 </span>
               </p>
+              
+              {/* Categories */}
+              <div className="flex items-center gap-1 flex-wrap">
+                {story.categories.slice(0, 6).map((category) => (
+                  <Badge key={category} variant="secondary" className="text-xs px-1.5 py-0.5 h-5">
+                    {category}
+                  </Badge>
+                ))}
+              </div>
             </div>
           </div>
         </CardContent>
       </Card>
-      
-      {/* Categories - Positioned outside bottom left */}
-      <div className="absolute -bottom-2 -left-2 flex items-center gap-1 flex-wrap max-w-[280px]">
-        {story.categories.slice(0, 4).map((category) => (
-          <Badge key={category} variant="secondary" className="text-xs px-1.5 py-0.5 h-5 bg-background border shadow-sm">
-            {category}
-          </Badge>
-        ))}
-      </div>
       
       {/* Action Buttons - Positioned outside bottom right */}
       <div className="absolute -bottom-2 -right-2 flex items-center gap-1 bg-background border rounded-md p-1 shadow-sm">
