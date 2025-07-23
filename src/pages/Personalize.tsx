@@ -116,19 +116,24 @@ export default function Personalize() {
 
   return (
     <AppLayout>
-      <div className="max-w-4xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="flex items-center justify-center mb-4">
-            <Sparkles className="w-8 h-8 text-primary mr-3" />
-            <h1 className="text-3xl font-bold">Personalize Your Feed</h1>
-          </div>
-          <p className="text-muted-foreground text-lg">
-            Help us curate the most relevant content for your interests and goals
-          </p>
-          
-          {/* Progress indicator */}
-          <div className="flex items-center justify-center space-x-2 mt-6">
+      <div className="h-full flex flex-col">
+        {/* Full page step content */}
+        <div className="flex-1 flex items-center justify-center">
+          {renderStepContent()}
+        </div>
+
+        {/* Navigation - fixed at bottom */}
+        <div className="flex justify-between items-center p-6 bg-background/80 backdrop-blur-sm border-t border-border">
+          <Button
+            variant="outline"
+            onClick={() => step > 1 ? setStep(step - 1) : navigate('/feed')}
+            className="bg-background/50 backdrop-blur-sm"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            {step > 1 ? 'Previous' : 'Skip'}
+          </Button>
+
+          <div className="flex items-center space-x-2">
             {[1, 2, 3].map((stepNumber) => (
               <div key={stepNumber} className="flex items-center">
                 <div className={`
@@ -144,7 +149,7 @@ export default function Personalize() {
                     stepNumber
                   )}
                 </div>
-                {stepNumber < totalSteps && (
+                {stepNumber < 3 && (
                   <div className={`
                     w-12 h-0.5 mx-2
                     ${stepNumber < step ? 'bg-primary' : 'bg-muted'}
@@ -153,23 +158,6 @@ export default function Personalize() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Step content */}
-        <Card className="p-8 bg-card/50 backdrop-blur-sm border-border">
-          {renderStepContent()}
-        </Card>
-
-        {/* Navigation */}
-        <div className="flex justify-between items-center">
-          <Button
-            variant="outline"
-            onClick={() => step > 1 ? setStep(step - 1) : navigate('/feed')}
-            className="bg-background/50 backdrop-blur-sm"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            {step > 1 ? 'Previous' : 'Skip'}
-          </Button>
 
           {step < totalSteps ? (
             <Button
