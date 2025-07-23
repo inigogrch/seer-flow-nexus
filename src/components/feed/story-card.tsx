@@ -29,7 +29,7 @@ export function StoryCard({ story, className }: StoryCardProps) {
       "group cursor-pointer transition-all duration-300",
       "hover:shadow-medium hover:scale-[1.01] hover:-translate-y-1",
       "bg-card/80 backdrop-blur-sm border-2 border-border hover:border-primary/30",
-      "w-80 h-64", // Make cards bigger
+      "w-96 h-80", // Make cards bigger
       className
     )}>
       <CardContent className="p-6 h-full">
@@ -50,9 +50,8 @@ export function StoryCard({ story, className }: StoryCardProps) {
                   </span>
                 </div>
               )}
-              <div className="min-w-0 flex-1">
+               <div className="min-w-0 flex-1">
                 <p className="font-medium text-sm truncate">{story.source.name}</p>
-                <p className="text-xs text-muted-foreground">{story.timestamp}</p>
               </div>
             </div>
             
@@ -64,55 +63,59 @@ export function StoryCard({ story, className }: StoryCardProps) {
           </div>
 
           {/* Content */}
-          <div className="space-y-3 flex-1">
-            <h3 className="font-bold text-lg leading-tight group-hover:text-primary transition-colors">
+          <div className="space-y-4 flex-1">
+            <h3 className="font-bold text-xl leading-tight group-hover:text-primary transition-colors">
               {story.title}
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-4">
+            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-6">
               {story.summary}
             </p>
-          </div>
-
-          {/* Footer */}
-          <div className="flex items-center justify-between pt-2 mt-auto">
+            
+            {/* Categories */}
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs text-muted-foreground">{story.readTime}</span>
-              {story.categories.slice(0, 3).map((category) => (
+              {story.categories.slice(0, 6).map((category) => (
                 <Badge key={category} variant="secondary" className="text-xs">
                   {category}
                 </Badge>
               ))}
             </div>
-            
-            <div className="flex items-center gap-2">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="hover:bg-accent"
-                // 🔄 MIGRATION TODO: Wire to real bookmark functionality
-                // onClick={() => onBookmark?.(story.id)}
-              >
-                <Bookmark className="h-4 w-4" />
-              </Button>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="hover:bg-accent"
-                // 🔄 MIGRATION TODO: Wire to real comment/discussion functionality
-                // onClick={() => onComment?.(story.id)}
-              >
-                <MessageCircle className="h-4 w-4" />
-              </Button>
-              <Button 
-                size="sm"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground"
-                onClick={() => window.open(story.url, '_blank')}
-                // 🔄 MIGRATION TODO: Add analytics tracking for article clicks
-                // onClick={() => { trackArticleClick(story.id); window.open(story.url, '_blank'); }}
-              >
-                Read
-                <ExternalLink className="ml-1 h-3 w-3" />
-              </Button>
+          </div>
+
+          {/* Footer */}
+          <div className="flex flex-col gap-3 pt-2 mt-auto">
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-muted-foreground">{story.timestamp}</p>
+              
+              <div className="flex items-center gap-2">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="hover:bg-accent"
+                  // 🔄 MIGRATION TODO: Wire to real bookmark functionality
+                  // onClick={() => onBookmark?.(story.id)}
+                >
+                  <Bookmark className="h-4 w-4" />
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="hover:bg-accent"
+                  // 🔄 MIGRATION TODO: Wire to real comment/discussion functionality
+                  // onClick={() => onComment?.(story.id)}
+                >
+                  <MessageCircle className="h-4 w-4" />
+                </Button>
+                <Button 
+                  size="sm"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  onClick={() => window.open(story.url, '_blank')}
+                  // 🔄 MIGRATION TODO: Add analytics tracking for article clicks
+                  // onClick={() => { trackArticleClick(story.id); window.open(story.url, '_blank'); }}
+                >
+                  Read
+                  <ExternalLink className="ml-1 h-3 w-3" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
