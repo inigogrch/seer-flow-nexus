@@ -18,10 +18,10 @@ export function AppLayout({ children }: AppLayoutProps) {
       <GeometricPattern variant="dots" />
       
       {/* Main content */}
-      <div className="relative z-10 flex w-full h-screen">
+      <div className="relative z-10 flex w-full">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto">
-          <div className="p-6">
+        <main className="flex-1 p-6 overflow-hidden">
+          <div className="h-full">
             {children}
           </div>
         </main>
