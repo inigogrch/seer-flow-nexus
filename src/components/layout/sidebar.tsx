@@ -1,6 +1,5 @@
 import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,6 @@ interface SidebarProps {
 
 export function Sidebar({ className }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
-  const pathname = usePathname();
 
   return (
     <div className={cn(
@@ -51,12 +49,11 @@ export function Sidebar({ className }: SidebarProps) {
       <nav className="p-4 space-y-2">
         {navigation.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href || (item.href === '/' && pathname === '/feed');
           return (
-            <Link
+            <NavLink
               key={item.name}
-              href={item.href}
-              className={cn(
+              to={item.href}
+              className={({ isActive }) => cn(
                 "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                 "hover:bg-accent hover:text-accent-foreground",
                 isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground",
@@ -65,7 +62,7 @@ export function Sidebar({ className }: SidebarProps) {
             >
               <Icon className="h-4 w-4" />
               {!collapsed && <span className="ml-3">{item.name}</span>}
-            </Link>
+            </NavLink>
           );
         })}
       </nav>
