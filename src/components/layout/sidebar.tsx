@@ -8,11 +8,13 @@ import {
   MessageSquare, 
   Settings, 
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Sparkles
 } from "lucide-react";
 
 const navigation = [
   { name: "Feed", href: "/", icon: Home },
+  { name: "Personalize", href: "/personalize", icon: Sparkles },
   { name: "Chat", href: "/chat", icon: MessageSquare },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
