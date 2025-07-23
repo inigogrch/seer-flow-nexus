@@ -1,7 +1,4 @@
-'use client'
-
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { AppLayout } from "@/components/layout/app-layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,8 +6,9 @@ import { RoleSelection } from "@/components/onboarding/role-selection";
 import { TechInterests } from "@/components/onboarding/tech-interests";
 import { ProjectsPriorities } from "@/components/onboarding/projects-priorities";
 import { ArrowLeft, ArrowRight, Sparkles, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-export function PersonalizePage() {
+export default function Personalize() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [selectedRole, setSelectedRole] = useState("");
@@ -51,7 +49,7 @@ export function PersonalizePage() {
       
       localStorage.setItem('user_preferences', JSON.stringify(preferences));
       
-      // 🔄 MIGRATION TODO: Send to backend API
+      // TODO: Send to backend API
       const response = await fetch('/api/user/onboard', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -128,7 +126,7 @@ export function PersonalizePage() {
         <div className="flex justify-between items-center p-6 bg-background/80 backdrop-blur-sm border-t border-border">
           <Button
             variant="outline"
-            onClick={() => step > 1 ? setStep(step - 1) : navigate('/')}
+            onClick={() => step > 1 ? setStep(step - 1) : navigate('/feed')}
             className="bg-background/50 backdrop-blur-sm"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -191,7 +189,7 @@ export function PersonalizePage() {
           )}
         </div>
 
-        {/* 🔄 MIGRATION TODO: Add backend integration */}
+        {/* TODO: Add migration note */}
         {/* 
         MIGRATION TODO:
         1. Connect to actual user profile storage (database)

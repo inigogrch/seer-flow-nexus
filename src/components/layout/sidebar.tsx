@@ -28,43 +28,45 @@ export function Sidebar({ className }: SidebarProps) {
 
   return (
     <div className={cn(
-      "h-full bg-card/50 backdrop-blur-lg border-r border-border transition-all duration-300 relative z-20",
+      "flex flex-col bg-sidebar border-r border-sidebar-border transition-all duration-300",
       collapsed ? "w-16" : "w-64",
       className
     )}>
       {/* Header */}
-      <div className="p-4 border-b border-border flex items-center justify-between">
+      <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
         {!collapsed && <Logo />}
         <Button
           variant="ghost"
           size="sm"
           onClick={() => setCollapsed(!collapsed)}
-          className="h-8 w-8 p-0"
+          className="hover:bg-sidebar-accent"
         >
           {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </Button>
       </div>
-      
+
       {/* Navigation */}
-      <nav className="p-4 space-y-2">
-        {navigation.map((item) => {
-          const Icon = item.icon;
-          return (
-            <NavLink
-              key={item.name}
-              to={item.href}
-              className={({ isActive }) => cn(
-                "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                "hover:bg-accent hover:text-accent-foreground",
-                isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground",
-                collapsed && "justify-center px-2"
-              )}
-            >
-              <Icon className="h-4 w-4" />
-              {!collapsed && <span className="ml-3">{item.name}</span>}
-            </NavLink>
-          );
-        })}
+      <nav className="flex-1 p-4">
+        <ul className="space-y-2">
+          {navigation.map((item) => (
+            <li key={item.name}>
+              <NavLink
+                to={item.href}
+                className={({ isActive }) =>
+                  cn(
+                    "flex items-center gap-3 px-3 py-2 rounded-lg text-sidebar-foreground transition-colors",
+                    "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                    isActive && "bg-sidebar-primary text-sidebar-primary-foreground font-medium",
+                    collapsed && "justify-center"
+                  )
+                }
+              >
+                <item.icon className="h-5 w-5 flex-shrink-0" />
+                {!collapsed && <span>{item.name}</span>}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </nav>
     </div>
   );
