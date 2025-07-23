@@ -43,6 +43,66 @@ const mockStories = [
     categories: ["Autonomous Vehicles", "Tesla", "Computer Vision"],
     readTime: "3 min read",
     url: "https://tesla.com"
+  },
+  {
+    id: "4",
+    title: "Meta Introduces Advanced AR Glasses with Neural Interface",
+    summary: "Meta's new AR glasses feature direct neural input capabilities, revolutionizing human-computer interaction.",
+    source: { name: "Meta AI Research", logo: "" },
+    timestamp: "8 hours ago",
+    relevance: 85,
+    impact: "High" as const,
+    categories: ["AR/VR", "Neural Interface", "Meta"],
+    readTime: "5 min read",
+    url: "https://ai.meta.com"
+  },
+  {
+    id: "5",
+    title: "Microsoft Azure Announces Serverless AI Model Deployment",
+    summary: "New serverless architecture allows instant deployment of AI models with automatic scaling and cost optimization.",
+    source: { name: "Microsoft Azure", logo: "" },
+    timestamp: "10 hours ago",
+    relevance: 79,
+    impact: "Medium" as const,
+    categories: ["Cloud Computing", "MLOps", "Microsoft"],
+    readTime: "4 min read",
+    url: "https://azure.microsoft.com"
+  },
+  {
+    id: "6",
+    title: "NVIDIA Unveils Next-Gen H200 Chips for AI Training",
+    summary: "NVIDIA's H200 chips deliver 2.5x performance improvement for large language model training and inference.",
+    source: { name: "NVIDIA Developer", logo: "" },
+    timestamp: "12 hours ago",
+    relevance: 91,
+    impact: "High" as const,
+    categories: ["Hardware", "AI Training", "NVIDIA"],
+    readTime: "7 min read",
+    url: "https://developer.nvidia.com"
+  },
+  {
+    id: "7",
+    title: "Apple's On-Device AI Processes 100B Parameters Locally",
+    summary: "Apple demonstrates breakthrough in edge AI with 100 billion parameter models running entirely on device.",
+    source: { name: "Apple Machine Learning", logo: "" },
+    timestamp: "14 hours ago",
+    relevance: 87,
+    impact: "High" as const,
+    categories: ["Edge Computing", "Privacy", "Apple"],
+    readTime: "6 min read",
+    url: "https://machinelearning.apple.com"
+  },
+  {
+    id: "8",
+    title: "Anthropic's Constitutional AI Shows 95% Safety Improvement",
+    summary: "Anthropic's latest constitutional AI training methods significantly improve model safety and alignment.",
+    source: { name: "Anthropic Research", logo: "" },
+    timestamp: "16 hours ago",
+    relevance: 83,
+    impact: "Medium" as const,
+    categories: ["AI Safety", "Anthropic", "Research"],
+    readTime: "5 min read",
+    url: "https://anthropic.com"
   }
 ];
 

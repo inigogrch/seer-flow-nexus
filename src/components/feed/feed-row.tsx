@@ -35,7 +35,7 @@ export function FeedRow({ title, stories, isLoading = false, className }: FeedRo
         <h3 className="text-xl font-semibold px-6">{title}</h3>
         <div className="flex gap-4 px-6">
           {[...Array(3)].map((_, i) => (
-            <Card key={i} className="min-w-[320px] h-[200px] animate-pulse bg-muted" />
+            <Card key={i} className="min-w-[400px] h-[240px] animate-pulse bg-muted" />
           ))}
         </div>
       </div>
@@ -50,7 +50,7 @@ export function FeedRow({ title, stories, isLoading = false, className }: FeedRo
           {stories.map((story) => (
             <Card 
               key={story.id} 
-              className="min-w-[320px] max-w-[320px] p-4 hover:bg-accent/50 transition-colors group cursor-pointer bg-card/50 backdrop-blur-sm border-border hover:border-primary/20"
+              className="min-w-[400px] max-w-[400px] p-4 hover:bg-accent/50 transition-colors group cursor-pointer bg-card/50 backdrop-blur-sm border-border hover:border-primary/20"
             >
               {/* Header */}
               <div className="flex justify-between items-start mb-3">
@@ -70,6 +70,15 @@ export function FeedRow({ title, stories, isLoading = false, className }: FeedRo
                 >
                   {story.impact}
                 </Badge>
+              </div>
+
+              {/* Placeholder Image */}
+              <div className="w-full h-20 mb-3 rounded-md overflow-hidden bg-muted">
+                <img 
+                  src={`https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=80&fit=crop&crop=center`}
+                  alt="Story thumbnail"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Content */}
