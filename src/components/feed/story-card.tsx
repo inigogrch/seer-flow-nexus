@@ -82,11 +82,23 @@ export function StoryCard({ story, className }: StoryCardProps) {
             </div>
 
             {/* Content */}
-            <div className="space-y-2 flex-1">
-              <h3 className="font-bold text-sm leading-tight group-hover:text-primary transition-colors line-clamp-2">
+            <div className="space-y-2 flex-1 min-h-0">
+              <h3 className="font-bold text-sm leading-[1.3] group-hover:text-primary transition-colors overflow-hidden" 
+                  style={{ 
+                    display: '-webkit-box', 
+                    WebkitLineClamp: 2, 
+                    WebkitBoxOrient: 'vertical',
+                    maxHeight: '2.6em'
+                  }}>
                 {story.title}
               </h3>
-              <p className="text-muted-foreground text-xs leading-relaxed line-clamp-2">
+              <p className="text-muted-foreground text-xs leading-[1.4] overflow-hidden" 
+                 style={{ 
+                   display: '-webkit-box', 
+                   WebkitLineClamp: 2, 
+                   WebkitBoxOrient: 'vertical',
+                   maxHeight: '2.8em'
+                 }}>
                 {story.summary}
               </p>
               
