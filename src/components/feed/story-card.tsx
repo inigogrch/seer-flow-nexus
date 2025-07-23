@@ -29,37 +29,37 @@ export function StoryCard({ story, className }: StoryCardProps) {
       "group cursor-pointer transition-all duration-300",
       "hover:shadow-medium hover:scale-[1.01] hover:-translate-y-1",
       "bg-card/80 backdrop-blur-sm border-2 border-border hover:border-primary/30",
-      "w-96 h-96", // Make cards bigger
+      "w-[420px] h-80", // Make cards wider but same height
       className
     )}>
-      <CardContent className="p-6 h-full">
-        <div className="space-y-4 h-full flex flex-col">
+      <CardContent className="p-4 h-full">
+        <div className="space-y-3 h-full flex flex-col">
           {/* Header */}
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-3 flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-2 flex-1 min-w-0">
               {story.source.logo ? (
                 <img 
                   src={story.source.logo} 
                   alt={story.source.name}
-                  className="h-8 w-8 rounded object-cover flex-shrink-0"
+                  className="h-6 w-6 rounded object-cover flex-shrink-0"
                 />
               ) : (
-                <div className="h-8 w-8 rounded bg-gradient-chrome flex items-center justify-center flex-shrink-0">
+                <div className="h-6 w-6 rounded bg-gradient-chrome flex items-center justify-center flex-shrink-0">
                   <span className="text-xs font-medium">
                     {story.source.name.charAt(0)}
                   </span>
                 </div>
               )}
                <div className="min-w-0 flex-1">
-                <p className="font-medium text-sm truncate">{story.source.name}</p>
+                <p className="font-medium text-xs truncate">{story.source.name}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <Badge 
                 variant="outline" 
                 className={cn(
-                  "text-xs font-medium",
+                  "text-xs font-medium px-2 py-0.5",
                   story.relevance >= 90 ? "border-red-500 text-red-600 bg-red-50" :
                   story.relevance >= 80 ? "border-orange-500 text-orange-600 bg-orange-50" :
                   "border-yellow-500 text-yellow-600 bg-yellow-50"
@@ -71,27 +71,27 @@ export function StoryCard({ story, className }: StoryCardProps) {
           </div>
 
           {/* Placeholder Image */}
-          <div className="w-full h-32 rounded-lg overflow-hidden bg-muted">
+          <div className="w-full h-24 rounded-md overflow-hidden bg-muted">
             <img 
-              src={`https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=128&fit=crop&crop=center`}
+              src={`https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=96&fit=crop&crop=center`}
               alt="Story thumbnail"
               className="w-full h-full object-cover"
             />
           </div>
 
           {/* Content */}
-          <div className="space-y-3 flex-1">
-            <h3 className="font-bold text-lg leading-tight group-hover:text-primary transition-colors line-clamp-3">
+          <div className="space-y-2 flex-1">
+            <h3 className="font-bold text-sm leading-tight group-hover:text-primary transition-colors line-clamp-4">
               {story.title}
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+            <p className="text-muted-foreground text-xs leading-relaxed line-clamp-4">
               {story.summary}
             </p>
             
             {/* Categories */}
             <div className="flex items-center gap-1 flex-wrap">
               {story.categories.slice(0, 6).map((category) => (
-                <Badge key={category} variant="secondary" className="text-xs px-2 py-1">
+                <Badge key={category} variant="secondary" className="text-xs px-1.5 py-0.5 h-5">
                   {category}
                 </Badge>
               ))}
@@ -99,38 +99,38 @@ export function StoryCard({ story, className }: StoryCardProps) {
           </div>
 
           {/* Footer */}
-          <div className="flex flex-col gap-3 pt-2 mt-auto">
+          <div className="flex flex-col gap-2 pt-1 mt-auto">
             <div className="flex items-center justify-between">
               <p className="text-xs text-muted-foreground">{story.timestamp}</p>
               
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="hover:bg-accent"
+                  className="hover:bg-accent h-6 w-6 p-0"
                   // 🔄 MIGRATION TODO: Wire to real bookmark functionality
                   // onClick={() => onBookmark?.(story.id)}
                 >
-                  <Bookmark className="h-4 w-4" />
+                  <Bookmark className="h-3 w-3" />
                 </Button>
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="hover:bg-accent"
+                  className="hover:bg-accent h-6 w-6 p-0"
                   // 🔄 MIGRATION TODO: Wire to real comment/discussion functionality
                   // onClick={() => onComment?.(story.id)}
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <MessageCircle className="h-3 w-3" />
                 </Button>
                 <Button 
                   size="sm"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs px-2 py-1 h-6"
                   onClick={() => window.open(story.url, '_blank')}
                   // 🔄 MIGRATION TODO: Add analytics tracking for article clicks
                   // onClick={() => { trackArticleClick(story.id); window.open(story.url, '_blank'); }}
                 >
                   Read
-                  <ExternalLink className="ml-1 h-3 w-3" />
+                  <ExternalLink className="ml-1 h-2.5 w-2.5" />
                 </Button>
               </div>
             </div>
