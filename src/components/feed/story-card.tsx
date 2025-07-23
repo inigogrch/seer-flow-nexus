@@ -37,6 +37,7 @@ export function StoryCard({ story, className }: StoryCardProps) {
           {/* Header */}
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-center gap-2 flex-1 min-w-0">
+              {/* 🔄 PLACEHOLDER: Replace with actual source logos from API */}
               {story.source.logo ? (
                 <img 
                   src={story.source.logo} 
@@ -51,11 +52,13 @@ export function StoryCard({ story, className }: StoryCardProps) {
                 </div>
               )}
                <div className="min-w-0 flex-1">
+                {/* 🔄 PLACEHOLDER: Source name from API feed response */}
                 <p className="font-medium text-xs truncate">{story.source.name}</p>
               </div>
             </div>
             
             <div className="flex items-center gap-1">
+              {/* 🔄 PLACEHOLDER: Relevance scoring from vector similarity API */}
               <Badge 
                 variant="outline" 
                 className={cn(
@@ -70,7 +73,7 @@ export function StoryCard({ story, className }: StoryCardProps) {
             </div>
           </div>
 
-          {/* Placeholder Image */}
+          {/* 🔄 PLACEHOLDER: Story thumbnail from API - will be actual article images */}
           <div className="w-full h-24 rounded-md overflow-hidden bg-muted">
             <img 
               src={`https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=96&fit=crop&crop=center`}
@@ -81,14 +84,16 @@ export function StoryCard({ story, className }: StoryCardProps) {
 
           {/* Content */}
           <div className="space-y-2 flex-1">
+            {/* 🔄 PLACEHOLDER: Article title from API feed response */}
             <h3 className="font-bold text-sm leading-tight group-hover:text-primary transition-colors line-clamp-4">
               {story.title}
             </h3>
+            {/* 🔄 PLACEHOLDER: Article summary/excerpt from API feed response */}
             <p className="text-muted-foreground text-xs leading-relaxed line-clamp-4">
               {story.summary}
             </p>
             
-            {/* Categories */}
+            {/* 🔄 PLACEHOLDER: Categories from API - will be ML-generated tags */}
             <div className="flex items-center gap-1 flex-wrap">
               {story.categories.slice(0, 6).map((category) => (
                 <Badge key={category} variant="secondary" className="text-xs px-1.5 py-0.5 h-5">
@@ -101,6 +106,7 @@ export function StoryCard({ story, className }: StoryCardProps) {
           {/* Footer */}
           <div className="flex flex-col gap-2 pt-1 mt-auto">
             <div className="flex items-center justify-between">
+              {/* 🔄 PLACEHOLDER: Publish timestamp from API feed response */}
               <p className="text-xs text-muted-foreground">{story.timestamp}</p>
               
               <div className="flex items-center gap-1">

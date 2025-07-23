@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Filters } from "@/components/feed/filters";
 import { Sparkles, TrendingUp, Zap, Globe, Star, ChevronUp, ChevronDown } from "lucide-react";
 
-// Mock story data - TODO: Replace with actual API calls
+// 🔄 PLACEHOLDER: Mock story data - Replace with actual API calls
+// This data structure matches the expected API response from GET /api/feed
 const mockStories = [
   {
     id: "1",
@@ -115,6 +116,10 @@ const STATIC_ROWS = [
 ];
 
 export default function Feed() {
+  // 🔄 FEED MODE DETECTION: This component serves two purposes:
+  // 1. LANDING PAGE FEED: Default public feed for all users (no personalization)
+  // 2. PERSONALIZED FEED: Post-onboarding feed based on user preferences in localStorage
+  
   const [feedRows, setFeedRows] = useState(STATIC_ROWS);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -122,6 +127,10 @@ export default function Feed() {
   const [selectedTimeframe, setSelectedTimeframe] = useState("all");
   const [selectedIndustry, setSelectedIndustry] = useState("all");
   const [isLoading, setIsLoading] = useState(false);
+
+  // 🔄 TODO: Add user preference detection
+  // const userPreferences = JSON.parse(localStorage.getItem('user_preferences') || 'null');
+  // const isPersonalized = !!userPreferences;
 
   const moveRow = (fromIndex: number, toIndex: number) => {
     const newRows = [...feedRows];
@@ -133,7 +142,12 @@ export default function Feed() {
   const handleRefresh = async () => {
     setIsLoading(true);
     try {
-      // TODO: Implement actual feed refresh API call
+      // 🔄 TODO: Implement actual feed refresh API call
+      // if (isPersonalized) {
+      //   await fetch(`/api/feed?userId=${user.id}&refresh=true`);
+      // } else {
+      //   await fetch('/api/feed?query=trending&refresh=true');
+      // }
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       console.log('Feed refreshed');
     } catch (error) {
@@ -204,14 +218,27 @@ export default function Feed() {
             ))}
           </div>
 
-          {/* TODO: Add migration note */}
+          {/* 🔄 MIGRATION TODO: Backend Integration Required */}
           {/* 
-          MIGRATION TODO:
-          1. Replace mockStories with actual API calls to GET /api/feed?query={row.query}
+          FEED MODES:
+          1. LANDING PAGE FEED (Default): 
+             - Public feed for all users
+             - Rows: Trending, Breakthroughs, Industry, Editor's Picks
+             - API: GET /api/feed?query=trending&mode=public
+          
+          2. PERSONALIZED FEED (Post-onboarding):
+             - Based on user preferences from localStorage.user_preferences
+             - Rows: Top Picks, {Interest}-based rows, Trending in {Role}
+             - API: GET /api/feed?userId={userId}&query={rowQuery}&mode=personalized
+          
+          BACKEND INTEGRATION TODO:
+          1. Replace mockStories with actual API calls to GET /api/feed
           2. Implement vector relevance scoring for personalized content
-          3. Add caching mechanism for feed data
-          4. Implement real-time updates for trending content
-          5. Add pagination for large result sets
+          3. Add user preference-based row customization
+          4. Add caching mechanism for feed data
+          5. Implement real-time updates for trending content
+          6. Add pagination for large result sets
+          7. Add analytics tracking for feed interactions
           */}
         </div>
       </div>

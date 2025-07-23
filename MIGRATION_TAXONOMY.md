@@ -67,15 +67,23 @@ This document outlines the migration from the original onboarding-based feed to 
 ## Backend Integration TODO
 
 ### API Endpoints to Update
-1. **`GET /api/feed?query={row-name}`**
-   - Currently returns mock data
-   - NEEDS: Query-specific content fetching
-   - NEEDS: Ranking algorithm implementation
+1. **`GET /api/feed?query={row-name}&mode={public|personalized}&userId={id?}`**
+   - Currently returns mock data in Feed.tsx (lines 10-107)
+   - NEEDS: Query-specific content fetching based on mode
+   - NEEDS: Vector similarity ranking for personalized mode
+   - NEEDS: User preference integration from localStorage
+   - Response format: `{ stories: Story[], total: number, hasMore: boolean }`
 
-2. **`POST /api/user/onboard`**
-   - Currently logs to console
-   - NEEDS: Database persistence
+2. **`POST /api/user/onboard`** 
+   - Currently logs to console in Personalize.tsx
+   - NEEDS: Database persistence of user preferences
    - NEEDS: User profile creation/update
+   - NEEDS: Return personalized feed configuration
+
+3. **`POST /api/feed/refresh`**
+   - New endpoint needed for feed refresh functionality
+   - NEEDS: Cache invalidation and content re-ranking
+   - NEEDS: Real-time content updates
 
 ### Feed Query Types
 - `trending` - Popular content across all categories
@@ -106,18 +114,31 @@ This document outlines the migration from the original onboarding-based feed to 
 
 ### State Management
 - Uses React Context for feed mode switching
-- localStorage for client-side preference persistence
+- localStorage for client-side preference persistence (key: 'user_preferences')
 - useEffect hooks for preference loading and feed adaptation
+- Feed mode detection in Feed.tsx determines public vs personalized content
+
+### Next.js/Vercel Configuration
+- Configured for Vite + React deployment on Vercel
+- vercel.json created for SPA routing support
+- All API routes follow Next.js App Router pattern
+- Environment ready for production deployment
 
 ### Performance Considerations
-- Horizontal scrolling with virtualization ready
+- Horizontal scrolling with virtualization ready (FeedRow.tsx)
 - Lazy loading for off-screen content (TODO)
 - Caching mechanism for API responses (TODO)
+- Optimized story card rendering with proper line-clamping
 
 ### Error Handling
 - Graceful fallback to public mode if preferences corrupt
 - API failure handling with cached content (TODO)
-- User feedback for personalization actions
+- User feedback for personalization actions via toast notifications
+
+### Placeholder Content Documentation
+- All mock data clearly marked with 🔄 PLACEHOLDER comments
+- Story card components annotated for API integration points
+- Feed modes explicitly documented for backend implementation
 
 ## Migration Checklist
 
@@ -130,12 +151,15 @@ This document outlines the migration from the original onboarding-based feed to 
 - [x] Basic feed mode switching logic
 
 ### 🚧 TODO - Backend Integration
-- [ ] Replace mock data with actual API calls
-- [ ] Implement query-specific content fetching
-- [ ] Vector similarity ranking for personalized content
-- [ ] User profile database persistence
+- [ ] Replace mock data with actual API calls (Feed.tsx lines 10-107)
+- [ ] Implement query-specific content fetching for both feed modes
+- [ ] Vector similarity ranking for personalized content based on user preferences
+- [ ] User profile database persistence (Personalize.tsx integration)
 - [ ] Content caching and refresh mechanisms
 - [ ] Analytics tracking for feed interactions
+- [ ] Real-time content updates and notifications
+- [ ] Article image extraction and thumbnail generation
+- [ ] ML-powered content categorization and tagging
 
 ### 🚧 TODO - Performance & UX
 - [ ] Implement content virtualization for large datasets
@@ -153,12 +177,55 @@ This document outlines the migration from the original onboarding-based feed to 
 - [ ] Feed analytics dashboard
 - [ ] Mobile-optimized touch interactions
 
+## Backend Implementation Guide
+
+### Database Schema Requirements
+```sql
+-- User profiles table
+CREATE TABLE users (
+  id UUID PRIMARY KEY,
+  role VARCHAR(50),
+  interests TEXT[],
+  projects TEXT,
+  created_at TIMESTAMP,
+  updated_at TIMESTAMP
+);
+
+-- Content cache table
+CREATE TABLE feed_content (
+  id UUID PRIMARY KEY,
+  title TEXT,
+  summary TEXT,
+  source_name VARCHAR(100),
+  source_logo TEXT,
+  url TEXT,
+  categories TEXT[],
+  impact VARCHAR(10),
+  published_at TIMESTAMP,
+  relevance_vector VECTOR(1024), -- For similarity search
+  cached_at TIMESTAMP
+);
+```
+
+### Vector Similarity Implementation
+- Use embeddings for user interests and content
+- Implement cosine similarity scoring for relevance
+- Consider user interaction history for ranking
+- Fallback to time-based ranking for public mode
+
+### Caching Strategy
+- Redis for API response caching (15-minute TTL)
+- Database materialized views for trending content
+- CDN caching for static assets (story thumbnails)
+
 ## Breaking Changes
 - Previous `/` route behavior changed (no onboarding gate)
 - localStorage schema introduced for preferences
 - API response format expectations may change with backend updates
+- Vercel deployment configuration added
 
 ## Backward Compatibility
 - Existing story card functionality preserved
-- Filter components maintained for compatibility
+- Filter components maintained for compatibility  
 - API endpoints remain functional with mock responses
+- All placeholder content clearly marked for replacement
