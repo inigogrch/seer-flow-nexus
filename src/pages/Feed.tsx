@@ -199,28 +199,6 @@ export default function Feed() {
           onIndustryChange={setSelectedIndustry}
         />
 
-        {/* Personalization prompt for new users */}
-        {!userPreferences && (
-          <div className="bg-gradient-primary rounded-lg p-6 text-primary-foreground">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Get Personalized Content</h3>
-                <p className="text-primary-foreground/80 text-sm">
-                  Tell us about your role and interests to get a curated feed tailored for you.
-                </p>
-              </div>
-              <Button 
-                variant="secondary" 
-                className="bg-white/20 hover:bg-white/30 text-primary-foreground border-white/20"
-                onClick={() => window.location.href = '/personalize'}
-              >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Personalize
-              </Button>
-            </div>
-          </div>
-        )}
-
         {/* Feed Rows */}
         <div className="space-y-8">
           {feedRows.map((row, index) => (
