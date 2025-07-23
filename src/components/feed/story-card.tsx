@@ -29,7 +29,7 @@ export function StoryCard({ story, className }: StoryCardProps) {
       "group cursor-pointer transition-all duration-300",
       "hover:shadow-medium hover:scale-[1.01] hover:-translate-y-1",
       "bg-card/80 backdrop-blur-sm border-2 border-border hover:border-primary/30",
-      "w-96 h-80", // Make cards bigger
+      "w-96 h-96", // Make cards bigger
       className
     )}>
       <CardContent className="p-6 h-full">
@@ -56,25 +56,42 @@ export function StoryCard({ story, className }: StoryCardProps) {
             </div>
             
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="text-xs">
+              <Badge 
+                variant="outline" 
+                className={cn(
+                  "text-xs font-medium",
+                  story.relevance >= 90 ? "border-red-500 text-red-600 bg-red-50" :
+                  story.relevance >= 80 ? "border-orange-500 text-orange-600 bg-orange-50" :
+                  "border-yellow-500 text-yellow-600 bg-yellow-50"
+                )}
+              >
                 {story.relevance}% relevance
               </Badge>
             </div>
           </div>
 
+          {/* Placeholder Image */}
+          <div className="w-full h-32 rounded-lg overflow-hidden bg-muted">
+            <img 
+              src={`https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=128&fit=crop&crop=center`}
+              alt="Story thumbnail"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
           {/* Content */}
-          <div className="space-y-4 flex-1">
-            <h3 className="font-bold text-xl leading-tight group-hover:text-primary transition-colors">
+          <div className="space-y-3 flex-1">
+            <h3 className="font-bold text-lg leading-tight group-hover:text-primary transition-colors line-clamp-3">
               {story.title}
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-6">
+            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
               {story.summary}
             </p>
             
             {/* Categories */}
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-1 flex-wrap">
               {story.categories.slice(0, 6).map((category) => (
-                <Badge key={category} variant="secondary" className="text-xs">
+                <Badge key={category} variant="secondary" className="text-xs px-2 py-1">
                   {category}
                 </Badge>
               ))}
