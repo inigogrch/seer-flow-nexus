@@ -116,14 +116,14 @@ export default function Personalize() {
 
   return (
     <AppLayout>
-      <div className="h-full flex flex-col">
+      <div className="flex flex-col h-full">
         {/* Full page step content */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center min-h-0">
           {renderStepContent()}
         </div>
 
         {/* Navigation - fixed at bottom */}
-        <div className="flex justify-between items-center p-6 bg-background/80 backdrop-blur-sm border-t border-border">
+        <div className="flex justify-between items-center p-6 bg-background/80 backdrop-blur-sm border-t border-border mt-auto">
           <Button
             variant="outline"
             onClick={() => step > 1 ? setStep(step - 1) : navigate('/feed')}
