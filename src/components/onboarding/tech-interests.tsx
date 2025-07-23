@@ -5,11 +5,10 @@ import { cn } from "@/lib/utils";
 const techInterests = [
   "LLMs",
   "Snowflake", 
-  "Computer Vision",
   "Robotics",
   "Cloud AI",
   "Data Visualization",
-  "MLOps",
+  "AI Agents",
   "Edge Computing", 
   "Quantum Computing",
   "Blockchain",
