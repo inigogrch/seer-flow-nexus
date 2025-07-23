@@ -59,7 +59,7 @@ const mockStories = [
 const Index = () => {
   // Onboarding state
   const [onboardingStep, setOnboardingStep] = useState(1);
-  const [isOnboardingComplete, setIsOnboardingComplete] = useState(false);
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState(true);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [otherRole, setOtherRole] = useState("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
