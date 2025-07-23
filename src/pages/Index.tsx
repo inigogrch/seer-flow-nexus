@@ -57,9 +57,11 @@ const mockStories = [
 // ============================================================================
 
 const Index = () => {
+  console.log("Index component rendering...");
+  
   // Onboarding state
   const [onboardingStep, setOnboardingStep] = useState(1);
-  const [isOnboardingComplete, setIsOnboardingComplete] = useState(true);
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState(false);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [otherRole, setOtherRole] = useState("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
@@ -73,6 +75,9 @@ const Index = () => {
   const [selectedImpact, setSelectedImpact] = useState("all");
   const [selectedTimeframe, setSelectedTimeframe] = useState("all");
   const [selectedIndustry, setSelectedIndustry] = useState("all");
+
+  console.log("Onboarding complete:", isOnboardingComplete);
+  console.log("Onboarding step:", onboardingStep);
 
   const handleInterestToggle = (interest: string) => {
     setSelectedInterests(prev => 
